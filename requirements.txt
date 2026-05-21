@@ -1,0 +1,23 @@
+# === RAG Engine ===
+sentence-transformers>=2.2.0
+chromadb>=0.4.0
+flask>=2.0.0
+click>=8.0.0
+
+# === Data Processing ===
+numpy>=1.24.0
+
+# === Lightweight LLM (for diagnostics, Phase 2) ===
+# pip install transformers torch --index-url https://download.pytorch.org/whl/cpu
+# torch on RPi 5 is ARM64, install from: https://github.com/nicehash/arm-tensorflow-pytorch
+# or use: pip install transformers torch --extra-index-url https://github.com/nicehash/arm-tensorflow-pytorch/releases/tag/v1.0.0
+
+# === Hailo-10H (optional, when running with AI HAT+ 2) ===
+# hailort>=4.15.0  # from Hailo's apt repository
+
+# === Telegram Notifier (Phase 2) ===
+# python-telegram-bot>=20.0
+
+# === Serial / Modbus (Phase 1 collector) ===
+# pymodbus>=3.0.0
+# pyserial>=3.5

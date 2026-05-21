@@ -1,0 +1,77 @@
+# TSM Stand definitions
+# Each stand represents a test station with its communication protocol
+
+stands:
+  - name: stand_01
+    protocol: modbus_rtu
+    interface: /dev/ttyUSB0
+    baud: 115200
+    data_bits: 8
+    parity: N
+    stop_bits: 1
+    slaves: [48]
+    poll_interval: 1.0
+    registers:
+      status: 0x0001
+      error_code: 0x0002
+      duration: 0x0003
+      voltage: 0x0010
+      current: 0x0011
+
+  - name: stand_02
+    protocol: modbus_tcp
+    host: 192.168.88.50
+    port: 502
+    slaves: [1, 2, 3]
+    poll_interval: 2.0
+    registers:
+      status: 0x0001
+      error_code: 0x0002
+      duration: 0x0003
+      voltage: 0x0010
+      current: 0x0011
+
+  - name: stand_03
+    protocol: proprietary_485
+    interface: /dev/ttyAMA0
+    baud: 115200
+    poll_interval: 0.5
+
+  - name: stand_04
+    protocol: modbus_rtu
+    interface: /dev/ttyUSB1
+    baud: 115200
+    slaves: [16, 32]
+    poll_interval: 1.0
+    registers:
+      status: 0x0001
+      error_code: 0x0002
+      duration: 0x0003
+      voltage: 0x0010
+      current: 0x0011
+
+  - name: stand_05
+    protocol: modbus_rtu
+    interface: /dev/ttyUSB2
+    baud: 115200
+    slaves: [64, 128]
+    poll_interval: 1.5
+    registers:
+      status: 0x0001
+      error_code: 0x0002
+      duration: 0x0003
+      voltage: 0x0010
+      current: 0x0011
+
+  - name: stand_06
+    protocol: modbus_tcp
+    host: 192.168.88.51
+    port: 502
+    slaves: [48]
+    poll_interval: 1.0
+    registers:
+      status: 0x0001
+      error_code: 0x0002
+      duration: 0x0003
+      voltage: 0x0010
+      current: 0x0011

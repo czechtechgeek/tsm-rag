@@ -1,0 +1,53 @@
+# TSM Evaluation rules
+# Each rule defines a condition that triggers an action
+
+rules:
+  - name: timeout_detected
+    description: "Modbus timeout (error_code 0x10)"
+    condition: "error_code == 0x10"
+    severity: warning
+    action: notify
+    cooldown_minutes: 5
+
+  - name: voltage_out_of_range_low
+    description: "Under-voltage (< 20.0V)"
+    condition: "voltage < 20.0"
+    severity: error
+    action: notify_immediately
+
+  - name: voltage_out_of_range_high
+    description: "Over-voltage (> 26.0V)"
+    condition: "voltage > 26.0"
+    severity: error
+    action: notify_immediately
+
+  - name: current_over_limit
+    description: "Over-current (> 5.0A)"
+    condition: "current > 5.0"
+    severity: error
+    action: notify_immediately
+
+  - name: repeated_failure
+    description: "3 consecutive FAIL on same stand"
+    condition: "consecutive_fail >= 3"
+    severity: critical
+    action: notify_immediately + stop_stand
+
+  - name: crc_error
+    description: "CRC error on RS485 bus"
+    condition: "error_code == 0x20"
+    severity: warning
+    action: notify
+    cooldown_minutes: 10
+
+  - name: test_duration_exceeded
+    description: "Test duration > limit"
+    condition: "duration_ms > 10000"
+    severity: info
+    action: log_only
+
+  - name: communication_lost
+    description: "No response from stand"
+    condition: "error_code == 0xFF"
+    severity: critical
+    action: notify_immediately
