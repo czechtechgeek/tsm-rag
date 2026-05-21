@@ -84,12 +84,12 @@ class ChromaClient:
         new_embeddings = [embeddings[i] for i in new_indices]
         new_metadatas = [
             {
-                "timestamp": logs[i].get("timestamp", ""),
-                "stand_id": logs[i].get("stand_id", ""),
-                "result": logs[i].get("result", ""),
-                "error_code": logs[i].get("error_code", -1),
-                "test_id": logs[i].get("test_id", ""),
-                "resolved": logs[i].get("resolved", False),
+                "timestamp": logs[i].get("timestamp") or "",
+                "stand_id": logs[i].get("stand_id") or "",
+                "result": logs[i].get("result") or "",
+                "error_code": logs[i].get("error_code") or 0,
+                "test_id": logs[i].get("test_id") or "",
+                "resolved": bool(logs[i].get("resolved")),
             }
             for i in new_indices
         ]
