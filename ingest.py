@@ -152,9 +152,9 @@ def main(data, chroma_dir, backend, reindex, dry_run, stats_only):
     for i in range(0, total_logs, BATCH_SIZE):
         batch = logs[i : i + BATCH_SIZE]
         batch_texts = [
-            log.get("message", "") + " " + log.get("resolution", "")
-            for log in batch
-        ]
+                (log.get("message") or "") + " " + (log.get("resolution") or "")
+                for log in batch
+            ]
 
         t0 = time.time()
         embeddings = embedder.encode(batch_texts)
