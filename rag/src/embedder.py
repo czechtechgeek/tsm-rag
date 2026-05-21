@@ -50,7 +50,7 @@ class SentenceTransformerEmbedder(BaseEmbedder):
                 "sentence-transformers not installed. Run: pip install sentence-transformers"
             )
         logger.info(f"Loading model: {self.model_name}")
-        self._model = SentenceTransformer(self_model_name)
+        self._model = SentenceTransformer(self.model_name)
         logger.info(f"Model loaded. Dimension: {self.embed_dim()}")
 
     def encode(self, texts: List[str]) -> List[List[float]]:
